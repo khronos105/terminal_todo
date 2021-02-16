@@ -5,12 +5,19 @@ const {
     pause,
     readInput
 } = require('./helpers/inquirer');
+const { saveDB, readDB } = require('./helpers/saveFile');
+const Task = require('./models/task');
 const Tasks = require('./models/tasks');
 
 const main = async() => {
     console.clear();
     let opt = '';
     const tasks = new Tasks();
+
+    const dbTasks = readDB();
+    if(dbTasks){
+        tasks.loadData(dbTasks);
+    }
 
     do{
         opt = await inquirerMenu();
@@ -24,6 +31,8 @@ const main = async() => {
                 console.log(tasks.listArr);
                 break;
         }
+
+        saveDB(tasks.listArr);
 
         await pause();
     }while(opt !== '0');

@@ -22,6 +22,16 @@ class Tasks{
         });
         return list;
     }
+
+    loadData(items){
+        items.forEach((item) => {
+            const task = new Task();
+            task.id = item.id;
+            task.desc = item.desc;
+            task.completedAt = item.completedAt;
+            this._list[task.id] = task
+        });
+    }
 }
 
 module.exports = Tasks;
