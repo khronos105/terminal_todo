@@ -32,6 +32,27 @@ class Tasks{
             this._list[task.id] = task
         });
     }
+
+    listTasks() {
+        this.listArr.forEach((task, i) => {
+            let msg = `${i+1}.`.green;
+            msg +=  task.details;
+            console.log(msg);
+        })
+    }
+
+    listByState(completed = true) {
+        this.listArr
+            .filter( item => {
+                return (item.completedAt != null && completed == true) || 
+                    (item.completedAt == null && completed == false);
+            })
+            .forEach((task, i) => {
+                let msg = `${i+1}.`.green;
+                msg +=  task.details;
+                console.log(msg);
+            }); 
+    }
 }
 
 module.exports = Tasks;

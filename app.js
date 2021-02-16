@@ -28,7 +28,13 @@ const main = async() => {
                 tasks.createTask(desc);
                 break;
             case '2':
-                console.log(tasks.listArr);
+                tasks.listTasks();
+                break;
+            case '3':
+                tasks.listByState();
+                break;
+            case '4':
+                tasks.listByState(false);
                 break;
         }
 
