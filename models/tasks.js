@@ -53,6 +53,12 @@ class Tasks{
                 console.log(msg);
             }); 
     }
+
+    delete(id = ''){
+        if(this._list[id]){
+            delete this._list[id];
+        }
+    }
 }
 
 module.exports = Tasks;
