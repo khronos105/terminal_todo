@@ -9,31 +9,31 @@ const qOpts = [
         choices: [
             {
                 value: '1',
-                name: '1. Create'
+                name: `${'1.'.green} Create`
             },
             {
                 value: '2',
-                name: '2. Show'
+                name: `${'2.'.green} Show`
             },
             {
                 value: '3',
-                name: '3. Completed tasks'
+                name: `${'3.'.green} Completed tasks`
             },
             {
                 value: '4',
-                name: '4. Pending tasks'
+                name: `${'4.'.green} Pending tasks`
             },
             {
                 value: '5',
-                name: '5. Complete task'
+                name: `${'5.'.green} Complete task`
             },
             {
                 value: '6',
-                name: '6. Delete task'
+                name: `${'6.'.green} Delete task`
             },
             {
                 value: '0',
-                name: '0. Quit'
+                name: `${'0.'.green} Quit`
             }
         ]
     }
@@ -42,7 +42,7 @@ const qOpts = [
 const inquirerMenu = async() => {
     console.clear();
     console.log('===================================='.green);
-    console.log('          Select one option         '.green);
+    console.log('          Select one option         '.white);
     console.log('====================================\n'.green);
 
     const { opt } = await inquirer.prompt(qOpts);
@@ -57,7 +57,26 @@ const pause = async() => {
     }]);
 }
 
+const readInput = async(message) => {
+    const question = [
+        {
+            type: 'input',
+            name: 'desc',
+            message,
+            validate(value) {
+                if(value.length === 0){
+                    return 'Please enter a valid value';
+                }
+                return true;
+            }
+        }
+    ];
+    const {desc} = await inquirer.prompt(question);
+    return desc;
+}
+
 module.exports = {
     inquirerMenu,
-    pause
+    pause,
+    readInput
 }
