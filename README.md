@@ -13,6 +13,7 @@ Simple TODO List in terminal made with NodeJS
 - List tasks by state(completed/pending)
 - Toggle completed tasks
 - Delete task
+- Persist tasks into a json file
 
 ---
 
